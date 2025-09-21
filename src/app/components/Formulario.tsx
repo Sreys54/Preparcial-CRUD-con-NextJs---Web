@@ -62,7 +62,7 @@ export default function MyForm() {
           name="name" 
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="bg-white border border-gray-300 rounded-md px-3 py-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="bg-white border border-gray-300 rounded-md px-3 py-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
           required
         />
       </div>
@@ -75,7 +75,7 @@ export default function MyForm() {
           name="birthDate" 
           value={birthDate}
           onChange={(e) => setBirthDate(e.target.value)}
-          className="bg-white border border-gray-300 rounded-md px-3 py-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="bg-white border border-gray-300 rounded-md px-3 py-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
           required
         />
       </div>
@@ -87,7 +87,7 @@ export default function MyForm() {
           name="description" 
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="bg-white border border-gray-300 rounded-md px-3 py-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 resize-vertical"
+          className="bg-white border border-gray-300 rounded-md px-3 py-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 resize-vertical text-black"
           required
         />
       </div>
@@ -100,7 +100,7 @@ export default function MyForm() {
           name="image" 
           value={image}
           onChange={(e) => setImage(e.target.value)}
-          className="bg-white border border-gray-300 rounded-md px-3 py-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="bg-white border border-gray-300 rounded-md px-3 py-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
           required
         />
       </div>
