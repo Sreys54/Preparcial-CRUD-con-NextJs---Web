@@ -17,7 +17,7 @@ export default function MyForm() {
     console.log(name, birthDate, description, image);
     
     try {
-      // Envío a tu backend real
+      // Envío al backend real
       const response = await fetch('http://127.0.0.1:8080/api/authors', {
         method: 'POST',
         headers: {

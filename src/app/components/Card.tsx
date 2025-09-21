@@ -26,6 +26,29 @@ const Card = ({name, birthDate, description, image }: CardProps) => {
        <h2 className="text-xl font-bold">{name}</h2>
         <p className="text-gray-600 text-sm">{birthDate}</p>
         <p className="text-sm mt-2">{description}</p>
+        
+        {/* Botones de acción */}
+        <div className="flex justify-between mt-4 gap-2">
+          <button 
+            className="flex-1 bg-blue-500 text-white font-medium py-2 px-4 rounded-md text-sm"
+            onClick={() => {
+              // Función para actualizar (sin implementar aún)
+              console.log('Actualizar autor:', name);
+            }}
+          >
+            Actualizar
+          </button>
+          
+          <button 
+            className="flex-1 bg-red-500 text-white font-medium py-2 px-4 rounded-md text-sm"
+            onClick={() => {
+              // Función para eliminar (sin implementar aún)
+              console.log('Eliminar autor:', name);
+            }}
+          >
+            Eliminar
+          </button>
+        </div>
       </div>
     </div>
   );
