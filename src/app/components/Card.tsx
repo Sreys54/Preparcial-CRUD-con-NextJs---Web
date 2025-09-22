@@ -4,14 +4,17 @@ import Image from 'next/image';
 
 
 interface CardProps {
+  id: number;
   name: string;
   birthDate: string;
   description: string;
   image: string;
+  onEdit?: () => void;
+  onDelete?: (id: number) => void;
 }
 
 
-const Card = ({name, birthDate, description, image }: CardProps) => {
+const Card = ({id, name, birthDate, description, image, onEdit, onDelete }: CardProps) => {
   return (
     <div className="border rounded-lg shadow-lg overflow-hidden max-w-sm">
       {}
@@ -32,8 +35,12 @@ const Card = ({name, birthDate, description, image }: CardProps) => {
           <button 
             className="flex-1 bg-blue-500 text-white font-medium py-2 px-4 rounded-md text-sm"
             onClick={() => {
-              // Función para actualizar (sin implementar aún)
-              console.log('Actualizar autor:', name);
+              if (onEdit) {
+                onEdit();
+              } else {
+                // Función para actualizar (sin implementar aún)
+                console.log('Actualizar autor:', name);
+              }
             }}
           >
             Actualizar
@@ -42,8 +49,14 @@ const Card = ({name, birthDate, description, image }: CardProps) => {
           <button 
             className="flex-1 bg-red-500 text-white font-medium py-2 px-4 rounded-md text-sm"
             onClick={() => {
-              // Función para eliminar (sin implementar aún)
-              console.log('Eliminar autor:', name);
+              if (onDelete) {
+                if (window.confirm(`¿Estás seguro de que deseas eliminar al autor "${name}"?`)) {
+                  onDelete(id);
+                }
+              } else {
+                // Función para eliminar (sin implementar aún)
+                console.log('Eliminar autor:', name);
+              }
             }}
           >
             Eliminar
