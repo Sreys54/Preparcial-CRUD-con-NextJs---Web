@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { hostname } from "os";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -27,6 +28,26 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "images.gr-assets.com",
+      },
+      {
+        protocol: "https",
+        hostname: "highclass.com.py",
+      },
+      {
+        protocol: "https",
+        hostname: "i.pinimg.com",
+      },
+      {
+        protocol: "https",
+        hostname:"pictures.abebooks.com"
+      },
+      {
+        protocol: "https",
+        hostname: "m.media-amazon.com"
+      },
+      {
+        protocol: "https",
+        hostname: "d28hgpri8am2if.cloudfront.net"
       }
     ],
   },

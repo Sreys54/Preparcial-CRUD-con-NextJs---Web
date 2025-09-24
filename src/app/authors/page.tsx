@@ -9,6 +9,8 @@ type Author = {
   name: string;
   birthDate: string;
   description: string;
+  libro: string;
+  premio: string;
   image: string;
 };
 

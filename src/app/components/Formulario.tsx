@@ -7,6 +7,8 @@ type Author = {
   name: string;
   birthDate: string;
   description: string;
+  libro: string;
+  premio: string;
   image: string;
 };
 
@@ -22,6 +24,8 @@ export default function MyForm({ author, isEditing = false, onSuccess, onCancel 
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [description, setDescription] = useState('');
+  const [libro, setLibro] = useState('');
+  const [premio, setPremio] = useState('');
   const [image, setImage] = useState('');
   const [message, setMessage] = useState('');
 
@@ -45,7 +49,7 @@ export default function MyForm({ author, isEditing = false, onSuccess, onCancel 
       const url = isEditing && author?.id 
         ? `http://127.0.0.1:8080/api/authors/${author.id}`
         : 'http://127.0.0.1:8080/api/authors';
-        
+
       const method = isEditing ? 'PUT' : 'POST';
       
       const response = await fetch(url, {
@@ -71,6 +75,8 @@ export default function MyForm({ author, isEditing = false, onSuccess, onCancel 
           setName('');
           setBirthDate('');
           setDescription('');
+          setLibro('');
+          setPremio('');
           setImage('');
         }
         
@@ -124,6 +130,30 @@ export default function MyForm({ author, isEditing = false, onSuccess, onCancel 
           name="description" 
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          className="bg-white border border-gray-300 rounded-md px-3 py-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 resize-vertical text-black"
+          required
+        />
+      </div>
+
+      <div>
+        <label htmlFor="libro" className="block text-sm font-medium text-gray-700 mb-1">Libro:</label>
+        <textarea 
+          id="libro"
+          name="libro" 
+          value={libro}
+          onChange={(e) => setLibro(e.target.value)}
+          className="bg-white border border-gray-300 rounded-md px-3 py-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 resize-vertical text-black"
+          required
+        />
+      </div>
+
+        <div>
+        <label htmlFor="premio" className="block text-sm font-medium text-gray-700 mb-1">Premio:</label>
+        <textarea 
+          id="premio"
+          name="premio" 
+          value={premio}
+          onChange={(e) => setPremio(e.target.value)}
           className="bg-white border border-gray-300 rounded-md px-3 py-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 resize-vertical text-black"
           required
         />
