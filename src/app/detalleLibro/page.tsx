@@ -29,6 +29,9 @@ export default function DetalleLibroPage() {
   const [libro, setLibro] = useState<LibroDetalle | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [reviewName, setReviewName] = useState('');
+  const [reviewSource, setReviewSource] = useState('');
+  const [reviewDescription, setReviewDescription] = useState('');
 
   useEffect(() => {
     if (id) {
@@ -49,6 +52,33 @@ export default function DetalleLibroPage() {
       setError('Error al cargar el detalle del libro');
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function addReview() {
+    if (!id || !reviewName || !reviewSource || !reviewDescription) return;
+    
+    try {
+      const res = await fetch(`http://127.0.0.1:8080/api/books/${id}/reviews`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: reviewName,
+          source: reviewSource,
+          description: reviewDescription
+        })
+      });
+      
+      if (res.ok) {
+        setReviewName('');
+        setReviewSource('');
+        setReviewDescription('');
+        fetchLibroDetalle(id); // Recargar datos
+      }
+    } catch (error) {
+      console.error('Error adding review:', error);
     }
   }
 
@@ -80,7 +110,7 @@ export default function DetalleLibroPage() {
   }
 
   return (
-    <main className="p-8">
+    <main className="p-8 bg-black min-h-screen">
       <div className="mb-4">
         <Link href="/libros">
           <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
@@ -88,9 +118,42 @@ export default function DetalleLibroPage() {
           </button>
         </Link>
       </div>
-      <h1 className="text-3xl font-bold mb-6">Detalle del Libro</h1>
+      <h1 className="text-3xl font-bold mb-6 text-white">Detalle del Libro</h1>
       <div className="flex justify-center">
         <DetalleBook {...libro} />
+      </div>
+      
+      <div className="mt-8 max-w-md mx-auto">
+        <h2 className="text-xl font-bold mb-4 text-white">Agregar Review</h2>
+        <div className="space-y-3">
+          <input 
+            type="text" 
+            placeholder="Nombre" 
+            value={reviewName}
+            onChange={(e) => setReviewName(e.target.value)}
+            className="w-full p-2 border rounded text-black bg-white"
+          />
+          <input 
+            type="text" 
+            placeholder="Source" 
+            value={reviewSource}
+            onChange={(e) => setReviewSource(e.target.value)}
+            className="w-full p-2 border rounded text-black bg-white"
+          />
+          <textarea 
+            placeholder="Description" 
+            value={reviewDescription}
+            onChange={(e) => setReviewDescription(e.target.value)}
+            className="w-full p-2 border rounded text-black bg-white"
+            rows={3}
+          />
+          <button 
+            onClick={addReview}
+            className="w-full bg-blue-600 text-white p-2 rounded"
+          >
+            Agregar Review
+          </button>
+        </div>
       </div>
     </main>
   );
